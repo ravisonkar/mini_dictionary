@@ -23,11 +23,11 @@ class App extends React.Component {
 
   }
 
-  submitHandler = (e) => {
+  submitHandler = () => {
     try {
-      if (this.state.search_word.length > 1) {
+      if (this.state.search_word!=="") {
         axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${this.state.search_word}`).then((res) => {
-          if (res.status == 200) {
+          if (res.status === 200) {
 
             this.setState({
               loader_visible: true,
@@ -36,8 +36,8 @@ class App extends React.Component {
 
             var definition_data = []
 
-            res.data[0].meanings.map((definitions) => (
-              definitions.definitions.map(async (definition) => (
+            res.data[0].meanings.map((definitions_object) => (
+              definitions_object.definitions.map(async (definition) => (
                 await definition_data.push(definition)
               ))
             ))
@@ -62,7 +62,7 @@ class App extends React.Component {
 
   render() {
     return (
-        <div style={{ border: '1px solid black', margin: 'auto', maxWidth: window.innerWidth < 600 ?'100%' : '50%',height:'90vh',overFlow:'auto'}}>
+        <div style={{ border: '1px solid black', margin: 'auto', maxWidth: window.innerWidth < 600 ?'100%' : '50%',height:'90vh',overFlow:'auto',background:'skyblue'}}>
           <div className='d-flex justify-content-center'>
             <form>
               <h1 className='mt-3 text-center border-bottom'>Mini Dictionary</h1>
@@ -83,7 +83,7 @@ class App extends React.Component {
             </ul>
           </div>
 
-          {this.state.loader_visible == true ? (
+          {this.state.loader_visible === true ? (
             <div class="d-flex justify-content-center">
               <div class="spinner-border" role="status">
               </div>
@@ -91,7 +91,7 @@ class App extends React.Component {
           ) : ""}
 
           <div className='d-flex justify-content-center'>
-            {this.state.word_not_found_message_visible == false ? (
+            {this.state.word_not_found_message_visible === false ? (
               <div>{this.state.word_not_found_message}</div>
             ) : ""}
           </div>
