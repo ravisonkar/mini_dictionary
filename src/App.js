@@ -91,7 +91,7 @@ class App extends React.Component {
           ) : ""}
 
           <div className='d-flex justify-content-center'>
-            {this.state.word_not_found_message_visible === false ? (
+            {this.state.word_not_found_message_visible === true ? (
               <div>{this.state.word_not_found_message}</div>
             ) : ""}
           </div>
