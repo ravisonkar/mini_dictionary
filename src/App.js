@@ -75,10 +75,10 @@ class App extends React.Component {
 
           <div className='d-flex justify-content-center mt-3'> {this.state.search_word_definitions.length > 1 ? (<h5>Definitions</h5>) : ""}</div>
 
-          <div className='d-flex justify-content-center mt-3'>
-            <ul className={this.state.search_word_definitions.length > 4 ? 'overflow px-5' : ''}>
+          <div className='d-flex justify-content-center mt-3 px-4'>
+            <ul className={this.state.search_word_definitions.length > 4 ? 'overflow bg-light' : ''}>
               {this.state.search_word_definitions.map((definitions) => (
-                <li className='p-3 border bg-light'>{definitions.definition}</li>
+                <li className='p-3 border'>{definitions.definition}</li>
               ))}
             </ul>
           </div>
